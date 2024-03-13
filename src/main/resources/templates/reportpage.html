@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" href="css/index.css">
+  <style>
+  button{
+    padding: 15px;
+    color: red;
+    background-color: aliceblue;
+    border: none;
+    position: fixed;
+    left: 76px;
+}
+ button:hover{
+     color: black;
+    font-weight: bold;
+    background-color: red;
+ }
+  </style>
+</head>
+<body>
+<!-- Header -->
+  <nav class="navbar navbar-inverse  navbar-fixed-top">                
+  </nav>
+<!-- end header -->
+
+
+
+
+
+
+<button onclick="today_report()">Today Report</button>
+  
+ <script src="/js/index.js"></script>
+ <script>
+ var filename;
+     function today_report(){
+    	$.ajax({
+    		type:"GET",
+    		url:"http://localhost:8080/report_download",
+    		success:function(response){
+    			alert(response);
+    			filename=response;
+    			downloadFile(filename);
+    		},
+    		erroe:function(e){
+    			alert("Error:"+e);
+    		}
+    	});
+     }
+     function downloadFile(filename){
+    	 window.location.href = '/download/'+filename;
+     }
+ </script>
+  
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" href="css/index.css">
+ <style>
+  .table {
+    width: 70%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    margin-left: 18%;
+     background-color:white;
+}
+.thead-dark{
+     background-color: black;
+    color: white;
+}
+.search_bar{
+      margin: 0 0 12px 52px;
+}
+
+
+#booklist_category{
+    padding: 8px;
+    position: absolute;
+    background-color: white;
+    border-radius: 10px 0px 0px 10px;
+}
+#book_value{
+  margin-left: 100px;
+}
+
+th,td {
+    text-align: center;
+}
+.btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    width: 90px;
+    margin-right: 8px;
+}
+
+
+  </style>
+
+</head>
+<body>
+
+<!-- Header -->
+<nav class="navbar navbar-inverse  navbar-fixed-top">
+
+</nav>
+<!-- end header -->
+<!-- Search bar -->
+
+  <div class="form-inline search_bar">
+   <select  id="booklist_category">
+    <option value="bookname">BookName</option>
+    <option value="author">Author</option>
+    <option value="category">Category</option>
+    <option value="isbm_no">ISBM No</option>
+    <option value="bookprice">Price</option>
+  </select>
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="book_value">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="search_book">Search</button>
+  </div>
+
+
+<!--End Search bar -->
+
+
+  <table class="table" id="show_table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ISBM Number</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">Author</th>
+      <th scope="col">Category</th>
+      <th scope="col">Copies</th>
+      <th scope="col">Price</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+ 
+   </tbody>
+ </table>
+ 
+  <script src="../js/index.js"></script>
+ <script type="text/javascript" src="js/listbooks.js"> </script>
+</body>
+</html>

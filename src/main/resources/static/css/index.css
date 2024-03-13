@@ -1,0 +1,19 @@
+body {
+    background-image: url(../image/index.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+}
+ /*Header*/
+.navbar-inverse {
+       position: relative;
+}
+ .navbar-nav{
+    float: right;
+}
+
+.navbar>.container-fluid .navbar-brand{
+    font-size: 25px;
+    font-weight: 600;
+    color: aliceblue;
+}

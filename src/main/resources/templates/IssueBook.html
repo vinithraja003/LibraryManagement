@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" href="../css/index.css">
+  <style>
+.container{
+    width: 41%;
+    border: 1px solid;
+    background-color: white;
+    margin-left: 20px;
+    position: absolute
+}
+h1{
+    font-size: 30px;
+    text-align: center;
+    color: red;
+    background-color: black;
+}
+.btn-danger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    width: 40%;
+ }
+.btn-default {
+    color: #333;
+    background-color: green;
+    border-color: #ccc;
+    width: 40%;
+    margin-left: 35px;
+}
+
+.search_iteam{
+    width: 50%;
+    border: 1px solid;
+    background-color: white;
+    position: relative;
+    float: right;
+    margin: 0 22px 0 0;
+    padding-bottom: 25px
+}
+
+.search_bar{
+      margin: 0 0 12px 52px;
+}
+
+
+#booklist_category,#studentlist_category{
+    padding: 8px;
+    position: absolute;
+    background-color: white;
+    border-radius: 10px 0px 0px 10px;
+}
+#book_value,#student_value{
+  margin-left: 107px;
+}
+.table {
+    width: 70%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    margin-left: 15%;
+     background-color:white;
+}
+.table2 {
+    width: 85%;
+   
+    margin-bottom: 20px;
+    margin-left: 10%;
+    background-color: white;
+}
+
+.table2 th,td{
+    width: 50%;
+    text-align: left;
+    padding: 10px 10px;
+
+}
+.thead-dark{
+     background-color: black;
+    color: white;
+}
+#show_table_student{
+   display:none;
+}
+#show_table_book{
+ display:none;
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+  <nav class="navbar navbar-inverse  navbar-fixed-top">  </nav>
+<!-- end header -->
+
+<!-- Issue Book form -->
+
+<div>
+<div class="container">
+  <h1>Issue Books</h1>
+  <form class="form-horizontal" >
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="student_name">Student Name:</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="student_name" placeholder="Student Name" name="student_name" readonly >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="roll_number">Student RollNumber:</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="roll_number" placeholder="Student RollNumber" name="roll_number" readonly >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="book_name">Book Name:</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="book_name" placeholder="Book Name" name="book_name" readonly >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="Author">Author:</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="author" placeholder="Author" name="author" readonly>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="isbm">ISBM Number:</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="isbm" placeholder=" ISBM Number" name="isbm" readonly>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="copies">Copies:</label>
+      <div class="col-sm-8">
+        <input type="number" class="form-control" id="copies" placeholder="Enter Book's  copies" name="copies">
+      </div>
+    </div>
+
+ 
+   
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+       <button type="button" class="btn btn-danger  issue_Clear">Clear</button>
+        <button type="button" class="btn btn-default  issue_Book_Student">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+<!--  End Issue Book form -->
+
+
+<div class="search_iteam" >
+  <h1> Search Book & Student</h1>
+
+   <!-- Search bar -->
+
+  <div class="form-inline search_bar">
+   <select  id="studentlist_category">
+     <option value="sname">Name</option>
+    <option value="branch">Branch</option>
+    <option value="rollnumber">RollNumber</option>
+  </select>
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="student_value">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="search_student">Search</button>
+  </div>
+
+
+<!--End Search bar -->
+
+    <!-- Search bar -->
+
+  <div class="form-inline search_bar">
+   <select  id="booklist_category">
+    <option value="bookname">BookName</option>
+    <option value="author">Author</option>
+    <option value="category">Category</option>
+    <option value="isbm_no">ISBM No</option>
+   
+  </select>
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="book_value">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="search_book">Search</button>
+  </div>
+
+
+<!--End Search bar -->
+
+ <!-- Student Table -->
+  <table class="table"  id="show_table_student">
+  <thead class="thead-dark">
+    <tr>
+      <!-- <th scope="col">No</th>-->
+      <th scope="col">Name</th>
+      <th scope="col">Branch</th>
+      <th scope="col">Roll Number</th>     
+   </tr>
+  </thead>
+  <tbody>
+    
+   </tbody>
+ </table>
+ <!-- Book Table  -->
+  <table class="table2" id="show_table_book">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ISBM Number</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">Author</th>
+      <th scope="col">Category</th>
+      <th scope="col">Copies</th>
+      
+     </tr>
+  </thead>
+  <tbody>
+ 
+   </tbody>
+ </table> 
+ 
+ 
+  
+</div>
+</div>
+
+
+<script src="../js/index.js"></script>
+<script src="../js/issue_Book_Student.js"></script>
+
+</body>
+</html>

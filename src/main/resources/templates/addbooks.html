@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" href="css/index.css">
+<style>
+.container{
+    width: 40%;
+    border: 1px solid;
+    background-color:white;
+}
+h1{
+    font-size: 30px;
+    text-align: center;
+    color: red;
+    background-color: black;
+}
+.btn-default {
+    color: #333;
+    background-color: green;
+    border-color: #ccc;
+    width: 50%;
+    margin-left: 100px;
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<nav class="navbar navbar-inverse  navbar-fixed-top">                
+</nav>
+<!-- end header -->
+
+<!-- Form  -->
+<div class="container">
+  <h1>Add Books</h1>
+  <form class="form-horizontal" >
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="book_name">Book Name:</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="book_name" placeholder="Enter book_name" name="book_name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="Author">Author:</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="author" placeholder="Enter Author Name" name="author">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="isbm">ISBM Number:</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="isbm" placeholder="Enter ISBM Number" name="isbm">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="copies">Copies:</label>
+      <div class="col-sm-8">
+        <input type="number" class="form-control" id="copies" placeholder="Enter Book's  copies" name="copies">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="Category">Category:</label>
+      <div class="col-sm-8">          
+        <input type="text" class="form-control" id="category" placeholder="Enter category name" name="category">
+      </div>
+    </div>
+        <div class="form-group">
+      <label class="control-label col-sm-4" for="book_price">Book Price:</label>
+      <div class="col-sm-8">    
+        <input type="text" class="form-control" id="book_price" placeholder="Enter Book Price" name="book_price">
+      </div>
+    </div>
+   
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="button" class="btn btn-default  submitbook">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+
+  <script src="/js/index.js"></script>
+  <script type="text/javascript" src="js/book.js"></script>
+</body>
+</html>

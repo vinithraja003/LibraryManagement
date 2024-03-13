@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" href="css/index.css">
+  <style>
+  .table {
+    width: 70%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    margin-left: 18%;
+     background-color:white;
+     /* position: absolute;*/
+}
+.thead-dark{
+     background-color: black;
+    color: white;
+}
+
+
+.search_bar{
+      margin: 0 0 12px 52px;
+}
+
+
+#studentlist_category{
+    padding: 8px;
+    position: absolute;
+    background-color: white;
+    border-radius: 10px 0px 0px 10px;
+}
+#student_value{
+  margin-left: 110px;
+}
+
+
+th,td {
+    text-align: center;
+}
+.btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    margin-right: 10px;
+}
+.container {
+    width: 50%;
+    border: 1px solid;
+    background-color: white;
+    margin-left: 30%;
+    position: absolute;
+    display: none;
+    top: 200px;
+}
+h1{
+    font-size: 30px;
+    text-align: center;
+    color: red;
+    background-color: black;
+}
+.back-btn{
+    margin-left: 25%;
+    width: 30%;
+    padding: 10px;
+}
+
+/*pagination*/
+ button.active,button:hover{
+   background-color:red;
+ }
+ .paginaton{
+ background-color: whitesmoke;
+ }
+  </style>
+
+</head>
+<body>
+
+<!-- Header -->
+<nav class="navbar navbar-inverse  navbar-fixed-top">
+</nav>
+<!-- end header -->
+
+
+<!-- Search bar -->
+
+  <div class="form-inline search_bar">
+   <select  id="studentlist_category">
+     <option value="sname">Name</option>
+    <option value="branch">Branch</option>
+    <option value="rollnumber">RollNumber</option>
+  </select>
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="student_value">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="search_student">Search</button>
+  </div>
+
+
+<!--End Search bar -->
+
+
+<!-- Table -->
+<div>
+  <table class="table"  id="show_table">
+  <thead class="thead-dark">
+    <tr>
+      <!-- <th scope="col">No</th>-->
+      <th scope="col">Name</th>
+      <th scope="col">Branch</th>
+      <th scope="col">Roll Number</th>
+      <th scope="col">Action</th>
+      
+   </tr>
+  </thead>
+  <tbody>
+    
+   </tbody>
+ </table>
+ </div>
+ <!-- End Table -->
+ 
+ <!-- Student Info -->
+   
+<div class="container">
+  <h1>Student Info</h1>
+  <form class="form-horizontal" >
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="student_name">Student Name:</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="student_name" placeholder="Student Name" name="student_name" readonly >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="roll_number">Student RollNumber:</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="roll_number" placeholder="Student RollNumber" name="roll_number" readonly >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="branch">Branch:</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="branch" placeholder="Book Name" name="branch" readonly >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="issue_book">Issue Book:</label>
+      <div class="col-sm-8">
+      <textarea rows="5" cols="50" class="issuedata" placeholder="Nil" readonly></textarea>
+ 
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="fine">Fine</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="fine_amount" placeholder=" fine" name="fine" readonly>
+        
+      </div>
+    </div>
+   
+   
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+       <button type="button" class="btn btn-danger back-btn">Close</button>
+      
+      </div>
+    </div>
+  </form>
+</div>
+<!--  End -->
+ 
+ 
+ 
+ <!-- Pagination -->
+ 
+
+ <div class="paginaton">
+ <button onclick="pagination()">pagination</button>
+    <div> 
+      <span>Show:</span>
+         <select id="table_size">
+            
+            <option value="2">2</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+         </select>
+      <span>Rows</span>
+   </div>
+   
+   <div id="search_filter">
+          <input type="text" id="tab_filter_text">
+          <button  id="tab_filter_btn">search</button>
+   </div>  
+   
+ <!-- Table -->
+  <table class="table"  id="pagination_table">
+  <thead class="thead-dark">
+    <tr>
+      <!-- <th scope="col">No</th>-->
+      <th scope="col">Name</th>
+      <th scope="col">Branch</th>
+      <th scope="col">Roll Number</th>
+      
+      
+   </tr>
+  </thead>
+  <tbody>
+
+   </tbody>
+ </table>
+
+ 
+   <div class="footer">
+        <span style="background-color:white;"></span>
+      <div class="index_button">
+          
+      </div>
+  </div>
+
+ 
+</div>
+ 
+ 
+ 
+  <script src="../js/index.js"></script>
+ <script type="text/javascript" src="js/liststudent.js"> </script>
+ 
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" href="css/index.css">
+  <style type="text/css">
+  
+ .paginaton {
+      background-color: white;
+  }
+ button.active,button:hover{
+   background-color:red;
+ }
+  
+  .table {
+    width: 50%;
+       margin-bottom: 20px;
+    background-color: white;
+}
+  </style>
+  
+  
+</head>
+<body>
+<!-- Header -->
+  <nav class="navbar navbar-inverse  navbar-fixed-top">                
+  </nav>
+<!-- end header -->
+
+<!-- Pagination -->
+ 
+
+ <div class="paginaton">
+    <div> 
+      <span>Show:</span>
+         <select id="table_size">
+            
+            <option value="2">2</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+         </select>
+      <span>Rows</span>
+   </div>
+   <div id="search_filter">
+          <input type="text" id="tab_filter_text">
+          <button  id="tab_filter_btn">search</button>
+   </div>
+ <!-- Table -->
+  <table class="table"  id="show_table">
+  <thead class="thead-dark">
+    <tr>
+      <!-- <th scope="col">No</th>-->
+      <th scope="col">Name</th>
+      <th scope="col">Branch</th>
+      <th scope="col">Roll Number</th>
+      
+      
+   </tr>
+  </thead>
+  <tbody>
+
+   </tbody>
+ </table>
+
+ 
+   <div class="footer">
+        <span style="background-color:white;"></span>
+      <div class="index_button">
+          
+      </div>
+  </div>
+
+ 
+</div>
+
+
+<script>
+var arrlist=[
+	{name:"vj",branch:"it",roll:"1"},
+	{name:"cc",branch:"it",roll:"2"},
+	{name:"ss",branch:"eee",roll:"3"},
+	
+	{name:"vj",branch:"cse",roll:"4"},
+	{name:"vj",branch:"it",roll:"5"},
+	{name:"ss",branch:"it",roll:"6"},
+	
+	{name:"vj",branch:"mech",roll:"7"},
+	{name:"ss",branch:"it",roll:"8"},
+	{name:"ss",branch:"it",roll:"9"},
+	{name:"vj",branch:"eee",roll:"10"},
+	
+];
+
+
+var array=[];
+var arr_length;
+var table_size=3;
+var start_index=1;
+var end_index=3;
+var current_index=1;
+var max_indexButton=0;
+ 
+ function preLoadcalculate(){
+	 
+	 filter_list();
+	 arr_length=array.length;
+	 max_indexButton=arr_length/table_size;
+	      if(arr_length%table_size>0){
+	    	  max_indexButton++;
+	      }
+ }
+ function filter_list(){
+	 var tab_filter_text=$('#tab_filter_text').val();
+	        if(tab_filter_text!=''){
+	        	 var temp_array=arrlist.filter(function(object){
+	        		 return  object.name.toString().includes(tab_filter_text)
+	        		|| object.branch.toString().includes(tab_filter_text)
+	        		 ||object.roll.toString().includes(tab_filter_text)
+	        	 });
+	        	 array=temp_array;
+	        }else{
+	        	array =arrlist;
+	        }
+ }
+   
+function displayIndexButton(){
+	 $('.index_button button').remove();
+	    preLoadcalculate();
+	   
+	    $('.index_button').append('<button onclick="prev()" class="previous">Previous</button>');
+	    
+	    for(let i=1;i<=max_indexButton;i++){
+	    	 $('.index_button').append('<button onclick="indexPagination('+i+')" index="'+i+'" >'+i+'</button>');
+	    	 
+	    }
+	    $('.index_button').append('<button onclick="next()" class="next">Next</button>');
+	    highlightbutton();
+ }
+
+
+function highlightbutton(){
+	
+	start_index=((current_index-1)*table_size)+1;
+	end_index=(start_index+table_size)-1;
+	
+	    if(end_index>arr_length){
+	    	end_index=arr_length;
+	    }
+	  
+	    $(".footer span").text('showing '+ start_index+' to '+end_index+' of '+arr_length+' entity')
+	    $('.index_button button').removeClass('active');
+	    $('.index_button button[index="'+current_index+'"]').addClass('active');
+	     
+	    
+	    displayTableRow();
+ }
+ function displayTableRow(){
+	 $('#show_table tbody tr').remove();
+	 var tab_start=start_index-1;
+	 var tab_end=end_index;
+	   for(let i=tab_start;i<tab_end;i++){
+		   var table_data='<tr><td>'+array[i].name+'</td><td>'+array[i].branch+'</td><td>'+array[i].roll+'</td></tr>';
+	       $('#show_table tbody').append(table_data);
+	   }
+ }
+ function next(){
+	 if(current_index<max_indexButton){
+		 current_index++;
+		 highlightbutton();
+		 
+		 $('.previous').removeAttr("style");
+	 }else{
+		 $('.next').css({"cursor":" not-allowed","pointer-events":" none"});
+	 }
+
+ } 
+ function prev(){
+	 if(current_index>1){
+		 current_index--;
+		 highlightbutton();
+		 
+		 $('.next').removeAttr("style");
+	 }else{
+		 $('.previous').css({"cursor":" not-allowed","pointer-events":" none"});
+	 }
+
+ }
+ function indexPagination(index){
+	 current_index=index;
+	 highlightbutton();
+	 
+	 $('.previous').removeAttr("style");
+	 $('.next').removeAttr("style");
+ }
+ 
+ $('#table_size').change(function(){
+	 //alert($(this).val())
+	table_size=parseInt($(this).val());
+	current_index=1;
+	start_index=1;
+	displayIndexButton();
+ });
+ 
+ $('#tab_filter_btn').click(function(){
+		current_index=1;
+		start_index=1;
+		displayIndexButton();
+	 
+ });
+ 
+displayIndexButton();
+</script>
+  <script src="/js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+Isbm:4444/BookName:java,Name:vinith/Rollnumber:9845,IssueDate:27-07-2023/ExpectedDate:04-08-2023
+Isbm:1212/BookName:html,Name:sankar/Rollnumber:2,IssueDate:04-08-2023/ExpectedDate:03-09-2023
+Isbm:1212/BookName:html,Name:vini/Rollnumber:1212,IssueDate:04-08-2023/ExpectedDate:03-09-2023
+Isbm:3333/BookName:css,Name:sankar/Rollnumber:2,IssueDate:04-08-2023/ExpectedDate:04-08-2023
+bookissue:{html=2},returnbook:{css=1, java=1}

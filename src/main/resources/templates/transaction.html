@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" href="css/index.css">
+<style>
+.table {
+      width: 82%;
+     margin-bottom: 20px;
+    margin-left: 7%;
+    background-color: white;
+}
+.thead-dark{
+     background-color: black;
+    color: white;
+}
+th,td {
+    text-align: center;
+}
+</style>
+</head>
+<body onload="load_transaction()">
+<!-- Header -->
+          <nav class="navbar navbar-inverse  navbar-fixed-top">                
+          </nav>
+<!-- end header -->
+
+<!--Start Table  --> 
+            <table class="table" id="show_table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ISBM Number</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">No of Books</th>
+      <th scope="col">Student Name</th>
+      <th scope="col">Student RollNumber</th>
+      <th scope="col">Issue Date</th>
+      <th scope="col">Return Date</th>
+      <th scope="col">Actual Return Date</th>
+    </tr>
+  </thead>
+       <tbody> 
+      </tbody>
+ </table>
+ 
+ 
+ 
+ 
+ 
+ <script src="/js/index.js"></script>
+ <script type="text/javascript" src="../js/transaction.js"></script>
+</body>
+</html>
